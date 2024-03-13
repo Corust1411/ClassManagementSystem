@@ -1,12 +1,6 @@
 <?php include 'connectdatabase.php';
 session_start();
-class MyDB extends SQLite3
-{
-    function __construct()
-    {
-        $this->open('../Academic/database/education.db');
-    }
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +52,7 @@ class MyDB extends SQLite3
                                             </div>
 
                                             <?php
-                                            $db = new MyDB();
+                                      
                                             if (isset($_GET['topic_id'])) {
                                                 $assignment_id = $_GET['topic_id'];
 

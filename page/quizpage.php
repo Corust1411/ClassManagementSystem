@@ -1,12 +1,6 @@
 <?php include 'connectdatabase.php';
 session_start();
-class MyDB extends SQLite3
-{
-    function __construct()
-    {
-        $this->open('../Academic/database/education.db');
-    }
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,14 +38,13 @@ class MyDB extends SQLite3
                             <div class="mx-auto bg-white p-8 border rounded-md shadow-md w-full">
                                 <h2 class="text-2xl font-semibold mb-6">QUIZ Page</h2>
                                 <div class="flex flex-col lg:flex-row items-center justify-center w-full">
-                                    <div
-                                        class="flex flex-col justify-center border rounded-md border-grey gap-6 w-full self-start h-full">
+                                    <div class="flex flex-col justify-center border rounded-md border-grey gap-6 w-full self-start h-full">
                                         <div class="flex p-4 bg-white rounded-3xl w-full self-start">
                                             <!-- Icon Container -->
 
                                             <div class="flex flex-col w-full ml-4">
                                                 <?php
-                                                $db = new MyDB();
+
                                                 if (isset($_GET['quiz_id'])) {
                                                     $quiz_id = $_GET['quiz_id'];
                                                     $sql_quiz = "SELECT * FROM quiz WHERE quiz_id = '$quiz_id'";
@@ -78,60 +71,42 @@ class MyDB extends SQLite3
 
                                                     <form method="post" action="../Academic/system/submitquiz.php">
                                                         <?php
-                                                        $db = new MyDB();
+
                                                         $sql_question = "SELECT * FROM question WHERE quiz_id = '$quiz_id'";
                                                         $result_question = $db->query($sql_question);
 
                                                         while ($row_question = $result_question->fetchArray(SQLITE3_ASSOC)) {
-                                                            ?>
+                                                        ?>
                                                             <div class="px-4 mt-2">
                                                                 <h3 class="text-xl font-bold">Question:
                                                                     <?= $row_question['question_title'] ?>
                                                                 </h3>
                                                                 <input type="hidden" name="quiz_id" value="<?= $quiz_id ?>">
-                                                                <input type="hidden" name="question_id[]"
-                                                                    value="<?= $row_question['question_id'] ?>">
+                                                                <input type="hidden" name="question_id[]" value="<?= $row_question['question_id'] ?>">
                                                                 <label>Select answer:</label>
                                                                 <div class="flex gap-2 mt-1">
-                                                                    <input type="radio"
-                                                                        id="answer_<?= $row_question['question_id'] ?>_A"
-                                                                        name="answer_<?= $row_question['question_id'] ?>"
-                                                                        value="A">
-                                                                    <label
-                                                                        for="answer_<?= $row_question['question_id'] ?>_A">
+                                                                    <input type="radio" id="answer_<?= $row_question['question_id'] ?>_A" name="answer_<?= $row_question['question_id'] ?>" value="A">
+                                                                    <label for="answer_<?= $row_question['question_id'] ?>_A">
                                                                         <?= $row_question['question_a'] ?>
                                                                     </label>
-                                                                    <input type="radio"
-                                                                        id="answer_<?= $row_question['question_id'] ?>_B"
-                                                                        name="answer_<?= $row_question['question_id'] ?>"
-                                                                        value="B">
-                                                                    <label
-                                                                        for="answer_<?= $row_question['question_id'] ?>_B">
+                                                                    <input type="radio" id="answer_<?= $row_question['question_id'] ?>_B" name="answer_<?= $row_question['question_id'] ?>" value="B">
+                                                                    <label for="answer_<?= $row_question['question_id'] ?>_B">
                                                                         <?= $row_question['question_b'] ?>
                                                                     </label>
-                                                                    <input type="radio"
-                                                                        id="answer_<?= $row_question['question_id'] ?>_C"
-                                                                        name="answer_<?= $row_question['question_id'] ?>"
-                                                                        value="C">
-                                                                    <label
-                                                                        for="answer_<?= $row_question['question_id'] ?>_C">
+                                                                    <input type="radio" id="answer_<?= $row_question['question_id'] ?>_C" name="answer_<?= $row_question['question_id'] ?>" value="C">
+                                                                    <label for="answer_<?= $row_question['question_id'] ?>_C">
                                                                         <?= $row_question['question_c'] ?>
                                                                     </label>
-                                                                    <input type="radio"
-                                                                        id="answer_<?= $row_question['question_id'] ?>_D"
-                                                                        name="answer_<?= $row_question['question_id'] ?>"
-                                                                        value="D">
-                                                                    <label
-                                                                        for="answer_<?= $row_question['question_id'] ?>_D">
+                                                                    <input type="radio" id="answer_<?= $row_question['question_id'] ?>_D" name="answer_<?= $row_question['question_id'] ?>" value="D">
+                                                                    <label for="answer_<?= $row_question['question_id'] ?>_D">
                                                                         <?= $row_question['question_d'] ?>
                                                                     </label>
                                                                 </div>
                                                             </div>
-                                                            <?php
+                                                        <?php
                                                         }
                                                         ?>
-                                                        <button type="submit"
-                                                            class="px-4 py-2 bg-blue-500 text-white rounded-md mt-4">Submit
+                                                        <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md mt-4">Submit
                                                             Quiz</button>
                                                     </form>
                                                 </div>

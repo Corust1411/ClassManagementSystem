@@ -1,19 +1,13 @@
 <?php
 include 'connectdatabase.php';
 session_start();
-class MyDB extends SQLite3
-{
-    function __construct()
-    {
-        $this->open('../Academic/database/education.db');
-    }
-}
 
-$db = new MyDB();
+
+
 if (!$db) {
     echo $db->lastErrorMsg();
 } else {
-    echo "Opened database successfully<br>";
+    // echo "Opened database successfully<br>";
 }
 
 $email = $_POST['email'];
@@ -44,7 +38,7 @@ if ($row) {
                 $_SESSION["student_id"] = $studentRow['student_id'];
             }
 
-            header("location: ../page/index.php");
+            header("location: ../page/studentindex.php");
             break;
         case 'teacher':
             $teacherQuery = "SELECT teacher_id FROM teacher WHERE user_id = '{$row['user_id']}'";
@@ -53,9 +47,9 @@ if ($row) {
 
             if ($teacherRow) {
                 $_SESSION["teacher_id"] = $teacherRow['teacher_id'];
-                header("location: ../page/teacherindex.php");
-                break;
             }
+            header("location: ../page/teacherindex.php");
+            break;
         case 'academic':
             header("location: ../Academic/dashboard.php");
             break;
@@ -69,4 +63,3 @@ if ($row) {
 }
 
 $db->close();
-?>

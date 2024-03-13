@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -38,6 +39,7 @@
 
             <!-- Content -->
             <div id="usertable-container"></div>
+
 
 
         </div>

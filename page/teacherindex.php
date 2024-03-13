@@ -6,13 +6,7 @@ if (!isset($_SESSION['login'])) {
     header("Location: ./login.php");
     exit();
 }
-class MyDB extends SQLite3
-{
-    function __construct()
-    {
-        $this->open('../Academic/database/education.db');
-    }
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,13 +17,13 @@ class MyDB extends SQLite3
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
-    <script type="module" src="./components.js"></script>
+
 </head>
 
 <body class="bg-[#AFDAFF] flex flex-col w-full min-h-screen">
     <div id="navbar-container"></div>
     <div id="sidenav-container"></div>
-    <!-- end nav -->
+
     <div class="mt-20 ml-60">
         <!-- main page -->
         <div class="grid grid-cols-2 gap-10 p-10 ">
@@ -40,16 +34,14 @@ class MyDB extends SQLite3
                     <!-- user img -->
                     <div class="py-4 w-80 h-80 bg-gray-900 mb-8 rounded-full overflow-hidden">
                         <?php
-                        $db = new MyDB();
+
                         $user_id = $_SESSION["user_id"];
                         $role = $_SESSION["role"];
                         $sql = "SELECT * FROM user WHERE role = '$role' and user_id = $user_id";
                         $result = $db->query($sql);
                         $row = $result->fetchArray(SQLITE3_ASSOC);
                         ?>
-                        <img class="w-full h-full object-cover"
-                            src="../Academic/system/profilepictures/<?= $row['profile_picture'] ?>"
-                            alt="Profile Image" />
+                        <img class="w-full h-full object-cover" src="../Academic/system/profilepictures/<?= $row['profile_picture'] ?>" alt="Profile Image" />
                     </div>
 
                 </div>
@@ -79,18 +71,16 @@ class MyDB extends SQLite3
                     </div>
 
                     <div class="lg:w-1/2 flex justify-end">
-                        <a href="classes.php" class="flex text-2xl text-[#136C94]">ดูชั้นเรียนทั้งหมด
-                            <svg class="w-10 h-10 text-gray-800 dark:text-[#136C94]" aria-hidden="true" fill="none"
-                                viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="m7 16 4-4-4-4m6 8 4-4-4-4" />
+                        <a href="teacherclasses.php" class="flex text-2xl text-[#136C94]">ดูชั้นเรียนทั้งหมด
+                            <svg class="w-10 h-10 text-gray-800 dark:text-[#136C94]" aria-hidden="true" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 16 4-4-4-4m6 8 4-4-4-4" />
                             </svg>
                         </a>
                     </div>
 
                     <div class="grid grid-cols-2 col-span-2 grid-rows-2  py-4 gap-5 w-full max-h-64">
                         <?php
-                        $db = new MyDB();
+                        // var_dump($_SESSION);
                         $teacher_id = $_SESSION['teacher_id'];
                         $sql = "SELECT * FROM teacher_subject 
                                 INNER JOIN course ON course.course_id = teacher_subject.course_id
@@ -101,12 +91,10 @@ class MyDB extends SQLite3
                         $result = $db->query($sql);
 
                         while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-                            ?>
+                        ?>
                             <div class="flex py-4 gap-5 w-full max-h-64">
-                                <a href="course_teacherpage.php?course_id=<?= $row['course_id'] ?>"
-                                    class="hover:ring-4 ring-white rounded-md w-full">
-                                    <div id="class1"
-                                        class="w-full bg-gradient-to-l from-[#FEFF86] to-[#17A7CE] rounded-md shadow-md">
+                                <a href="course_teacherpage.php?course_id=<?= $row['course_id'] ?>" class="hover:ring-4 ring-white rounded-md w-full">
+                                    <div id="class1" class="w-full bg-gradient-to-l from-[#FEFF86] to-[#17A7CE] rounded-md shadow-md">
                                         <h1 class="text-xl p-3 text-ellipsis overflow-x-hidden ... text-white">
                                             <?php echo $row['course_name']; ?>
                                         </h1>
@@ -116,7 +104,7 @@ class MyDB extends SQLite3
                                     </div>
                                 </a>
                             </div>
-                            <?php
+                        <?php
                         }
                         ?>
                     </div>
@@ -124,7 +112,9 @@ class MyDB extends SQLite3
             </div>
         </div>
     </div>
+    </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <script type="module" src="./components.js"></script>
 </body>
 
 </html>

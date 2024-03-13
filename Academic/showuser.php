@@ -1,11 +1,5 @@
 <?php include 'connectdatabase.php';
-class MyDB extends SQLite3
-{
-    function __construct()
-    {
-        $this->open('../Academic/database/education.db');
-    }
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,37 +32,33 @@ class MyDB extends SQLite3
         <!-- Content -->
         <div class="p-6">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-                <div
-                    class="bg-white border border-gray-100 shadow-md shadow-black/5 p-6 rounded-md lg:col-span-2 w-full">
+                <div class="bg-white border border-gray-100 shadow-md shadow-black/5 p-6 rounded-md lg:col-span-2 w-full">
                     <div class="flex justify-between mb-4 items-start">
-                        <select id="role" name="category"
-                            class="mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500"
-                            onchange="redirectPage()">
-                            <option value="all" selected>All user</option>
-                            <option value="student">Student</option>
-                            <option value="teacher">Teacher</option>
-                            <option value="academic">Academic</option>
+                        <select id="role" name="category" class="mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500" onchange="redirectPage()">
+                            <option value="all" selected>แสดงผู้ใช้ทั้งหมด</option>
+                            <option value="student">แสดงเฉพาะผู้เรียน</option>
+                            <option value="teacher">แสดงเฉพาะผู้สอน</option>
+                            <option value="academic">แสดงเฉพาะวิชาการ</option>
                         </select>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="min-w-full border border-collapse border-2">
                             <thead>
                                 <tr>
-                                    <th class="border p-1">User_id</th>
-                                    <th class="border p-1">Firstname</th>
-                                    <th class="border p-1">Lastname</th>
-                                    <th class="border p-1">Email</th>
-                                    <th class="border p-1">DOB</th>
-                                    <th class="border p-1">Gender</th>
-                                    <th class="border p-1">Phone Number</th>
-                                    <th class="border p-1">Role</th>
+                                    <th class="border p-1">ไอดี</th>
+                                    <th class="border p-1">ชื่อจริง</th>
+                                    <th class="border p-1">นามสกุล</th>
+                                    <th class="border p-1">อีเมล</th>
+                                    <th class="border p-1">วันเดือนปีเกิด</th>
+                                    <th class="border p-1">เพศ</th>
+                                    <th class="border p-1">เบอร์ติดต่อ</th>
+                                    <th class="border p-1">ตำแหน่ง</th>
                                     <!-- <th class="border p-1">Profile Image</th> -->
                                 </tr>
                             </thead>
                             <div class="all-user">
                                 <tbody>
                                     <?php
-                                    $db = new MyDB();
                                     $sql_user = "SELECT * FROM `user` ORDER BY 
                                         CASE 
                                             WHEN role = 'academic' THEN 1 
@@ -86,6 +76,7 @@ class MyDB extends SQLite3
                                         echo "<td class='border p-1'>" . $row['email'] . "</td>";
                                         echo "<td class='border p-1'>" . $row['dob'] . "</td>";
                                         echo "<td class='border p-1'>" . $row['gender'] . "</td>";
+                                        echo "<td class='border p-1'>" . $row['password'] . "</td>";
                                         echo "<td class='border p-1'>" . $row['phonenum'] . "</td>";
                                         echo "<td class='border p-1'>";
                                         if ($row['role'] == 'academic') {

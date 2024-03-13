@@ -1,14 +1,6 @@
 <?php
 include 'connectdatabase.php';
 session_start();
-class MyDB extends SQLite3
-{
-    function __construct()
-    {
-        $this->open('../Academic/database/education.db');
-    }
-}
-$db = new MyDB();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // รับข้อมูลจากฟอร์ม

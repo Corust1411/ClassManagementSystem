@@ -1,24 +1,16 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "education";
-
-
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-// echo "Connected successfully";
-
-class MyDB extends SQLite3
+class acadSystemDB extends SQLite3
 {
-    function __construct()
-    {
-        $this->open('fwp-db-file.db');
-    }
+   function __construct()
+   {
+      $this->open('../../system/nnew.db');
+   }
 }
 
-?>
+// 2. Open Database 
+$db = new acadSystemDB();
+if (!$db) {
+   echo $db->lastErrorMsg();
+} else {
+   echo "Opened database successfully<br>";
+}

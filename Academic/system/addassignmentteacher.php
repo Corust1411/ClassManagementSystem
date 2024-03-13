@@ -1,14 +1,7 @@
 <?php
 session_start();
 include 'connectdatabase.php';
-class MyDB extends SQLite3
-{
-    function __construct()
-    {
-        $this->open('../Academic/database/education.db');
-    }
-}
-$db = new MyDB();
+
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -52,4 +45,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // Close the database connection
 $db->close();
-?>

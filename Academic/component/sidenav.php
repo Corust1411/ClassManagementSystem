@@ -4,25 +4,25 @@
         <h2 class="font-bold text-2xl">HOW TO <span class="bg-[#f84525] text-white px-2 rounded-md">LEARN</span></h2>
     </a>
     <ul class="mt-4">
-        <span class="text-gray-400 font-bold">ADMIN</span>
+        <span class="text-gray-400 font-bold">ผู้ดูแล</span>
         <li class="mb-1 group">
             <a href="../Academic/dashboard.php" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
                 <i class="ri-home-2-line mr-3 text-lg"></i>
-                <span class="text-sm">Dashboard</span>
+                <span class="text-sm">หน้าหลัก</span>
             </a>
         </li>
         <li class="mb-1 group">
             <a href="" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
                 <i class='bx bx-user mr-3 text-lg'></i>
-                <span class="text-sm">Users</span>
+                <span class="text-sm">จัดการบัญชีผู้ใช้</span>
                 <i class="ri-arrow-right-s-line ml-auto group-[.selected]:rotate-90"></i>
             </a>
             <ul class="pl-7 mt-2 hidden group-[.selected]:block">
                 <li class="mb-4">
-                    <a href="showuser.php" class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">View user</a>
+                    <a href="showuser.php" class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">ดูผู้ใช้</a>
                 </li>
                 <li class="mb-4">
-                    <a href="reg.php" class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">Register user</a>
+                    <a href="reg.php" class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">สมัครบัญชีเพิ่ม</a>
                 </li>
             </ul>
         </li>
@@ -34,42 +34,36 @@
                     </svg>
                 </i>
 
-                <span class="text-sm pl-1">Course</span>
+                <span class="text-sm pl-1">ชั้นเรียน</span>
                 <i class="ri-arrow-right-s-line ml-auto group-[.selected]:rotate-90"></i>
             </a>
             <ul class="pl-7 mt-2 hidden group-[.selected]:block">
                 <li class="mb-4">
 
-                    <a href="course.php" class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">All</a>
+                    <a href="course.php" class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">ดูชั้นเรียนทั้งหมด</a>
                 </li>
                 <li class="mb-4">
-                    <a href="regcourse.php" class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">Create Course</a>
+                    <a href="regcourse.php" class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">สร้างชั้นเรียนเพิ่ม</a>
                 </li>
                 <li class="mb-4">
-                    <a href="rolecourse.php" class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">Add Role</a>
+                    <a href="rolecourse.php" class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">เพิ่มสมาชิกในชั้นเรียน</a>
                 </li>
             </ul>
         </li>
-        <li class="mb-1 group">
-            <a href="" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
-                <i class='bx bx-list-ul mr-3 text-lg'></i>
-                <span class="text-sm">Activities</span>
-            </a>
-        </li>
 
-        <span class="text-gray-400 font-bold">PERSONAL</span>
+        <span class="text-gray-400 font-bold">ใช้งานส่วนตัว</span>
         <li class="mb-1 group">
             <a href="" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
                 <i class='bx bx-bell mr-3 text-lg'></i>
-                <span class="text-sm">Notifications</span>
+                <span class="text-sm">การแจ้งเตือน</span>
                 <span class=" md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-red-600 bg-red-200 rounded-full">5</span>
             </a>
         </li>
         <li class="mb-1 group">
             <a href="" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
                 <i class='bx bx-envelope mr-3 text-lg'></i>
-                <span class="text-sm">Messages</span>
-                <span class=" md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-green-600 bg-green-200 rounded-full">2 New</span>
+                <span class="text-sm">ข้อความ</span>
+                <span class=" md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-green-600 bg-green-200 rounded-full">2</span>
             </a>
         </li>
     </ul>

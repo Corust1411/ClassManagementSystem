@@ -1,15 +1,6 @@
 <?php
 session_start(); // Start session
 include 'connectdatabase.php';
-class MyDB extends SQLite3
-{
-    function __construct()
-    {
-        $this->open('../Academic/database/education.db');
-    }
-}
-
-$db = new MyDB();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $quiz_id = $_POST['quiz_id'];

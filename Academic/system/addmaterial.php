@@ -1,14 +1,7 @@
 <?php
 include 'connectdatabase.php';
 session_start();
-class MyDB extends SQLite3
-{
-    function __construct()
-    {
-        $this->open('../Academic/database/education.db');
-    }
-}
-$db = new MyDB();
+
 
 $course_id = $_GET['course_id'];
 $postrole = $_POST['postrole'];
@@ -38,7 +31,7 @@ if ($postrole === 'material') {
 } elseif ($postrole === 'post') {
     $sql = "INSERT INTO `topic` (topic_title, topic_description, material_id, date_upload, topic_file, user_id) 
             VALUES ('$lessonTitle', '$lessonContent', '$material_id', CURRENT_TIMESTAMP, '$lessonFileimage', '$user_id')";
-
+    // echo "Data inserted successfully.";
     $result = $db->exec($sql);
 
     if (!$result) {
@@ -63,4 +56,3 @@ if ($role === 'student') {
 echo "Data inserted successfully.";
 // echo "<script>window.location = '../coursepage.php?course_id=$course_id';</script>";
 echo "<script>location.reload(true);</script>";
-?>

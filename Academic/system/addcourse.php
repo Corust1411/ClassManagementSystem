@@ -1,13 +1,6 @@
 <?php
 include 'connectdatabase.php';
-class MyDB extends SQLite3
-{
-    function __construct()
-    {
-        $this->open('../Academic/database/education.db');
-    }
-}
-$db = new MyDB();
+
 
 $course_name = $_POST['courseName'];
 $course_description = $_POST['description'];

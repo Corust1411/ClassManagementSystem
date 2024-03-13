@@ -63,7 +63,6 @@ if ($materialResult) {
 
                 echo "Assignment and submission inserted successfully for all students!";
                 echo "<script>window.location = '../coursepage.php?course_id=$course_id';</script>";
-                // echo "<script>location.reload(true);</script>";
             } else {
                 echo "Error fetching students: " . mysqli_error($conn);
             }

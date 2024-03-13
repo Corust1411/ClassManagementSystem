@@ -1,5 +1,7 @@
 <?php include 'connectdatabase.php';
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,33 +35,36 @@
         <div class="p-6">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
                 <div class="bg-white border border-gray-100 shadow-md shadow-black/5 p-6 rounded-md lg:col-span-2 w-full">
-                    <div class="flex justify-between mb-4 items-start">
+                <div class="flex justify-between mb-4 items-start">
                             <select id="role" name="category" class="mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500" onchange="redirectPage()">
-                                <option value="all">All user</option>
-                                <option value="student">Student</option>
-                                <option value="teacher" selected>Teacher</option>
-                                <option value="academic">Academic</option>
+                                <option value="all">แสดงผู้ใช้ทั้งหมด</option>
+                                <option value="student" >แสดงเฉพาะผู้เรียน</option>
+                                <option value="teacher">แสดงเฉพาะผู้สอน</option>
+                                <option value="academic" selected>แสดงเฉพาะวิชาการ</option>
                             </select>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="min-w-full border border-collapse border-2">
                             <thead>
                                 <tr>
-                                    <th class="border p-1">User_id</th>
-                                    <th class="border p-1">Firstname</th>
-                                    <th class="border p-1">Lastname</th>
-                                    <th class="border p-1">Email</th>
-                                    <th class="border p-1">DOB</th>
-                                    <th class="border p-1">Gender</th>
-                                    <th class="border p-1">Phone Number</th>
-                                    <th class="border p-1">Role</th>
+                                    <th class="border p-1">ไอดี</th>
+                                    <th class="border p-1">ชื่อจริง</th>
+                                    <th class="border p-1">นามสกุล</th>
+                                    <th class="border p-1">อีเมล</th>
+                                    <th class="border p-1">วันเดือนปีเกิด</th>
+                                    <th class="border p-1">เพศ</th>
+                                    <th class="border p-1">เบอร์ติดต่อ</th>
+                                    <th class="border p-1">ตำแหน่ง</th>
                                     <!-- <th class="border p-1">Profile Image</th> -->
                                 </tr>
                             </thead>
                             <div class="all-user">
+
+
+
                                 <tbody>
                                     <?php
-                                    $db = new MyDB();
+                                   
                                     $sql_user = "SELECT * FROM `user` WHERE `role` = 'academic'";
                                     $result_user = $db->query($sql_user);
 

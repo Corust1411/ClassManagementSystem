@@ -1,12 +1,6 @@
 <?php include 'connectdatabase.php';
 session_start();
-class MyDB extends SQLite3
-{
-    function __construct()
-    {
-        $this->open('../Academic/database/education.db');
-    }
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,21 +38,17 @@ class MyDB extends SQLite3
                             <div class="mx-auto bg-white p-8 border rounded-md shadow-md w-full">
                                 <h2 class="text-2xl font-semibold mb-6">Post Page</h2>
                                 <div class="flex flex-col lg:flex-row items-center gap-4  justify-center w-full">
-                                    <div
-                                        class="flex flex-col justify-center border rounded-md border-grey gap-6 w-full lg:w-3/4 h-full">
+                                    <div class="flex flex-col justify-center border rounded-md border-grey gap-6 w-full lg:w-3/4 h-full">
                                         <div class="flex p-4 bg-white rounded-3xl w-full h-fit">
                                             <!-- icon -->
                                             <div class="bg-[#136C94] rounded-full w-20 h-20 flex justify-center">
-                                                <svg class="w-16 h-16 mt-2 text-white justify-center" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                    <path stroke="currentColor" stroke-linecap="round"
-                                                        stroke-linejoin="round" stroke-width="2"
-                                                        d="M12 6v13m0-13c-2.8-.8-4.7-1-8-1a1 1 0 0 0-1 1v11c0 .6.5 1 1 1 3.2 0 5 .2 8 1m0-13c2.8-.8 4.7-1 8-1 .6 0 1 .5 1 1v11c0 .6-.5 1-1 1-3.2 0-5 .2-8 1" />
+                                                <svg class="w-16 h-16 mt-2 text-white justify-center" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v13m0-13c-2.8-.8-4.7-1-8-1a1 1 0 0 0-1 1v11c0 .6.5 1 1 1 3.2 0 5 .2 8 1m0-13c2.8-.8 4.7-1 8-1 .6 0 1 .5 1 1v11c0 .6-.5 1-1 1-3.2 0-5 .2-8 1" />
                                                 </svg>
                                             </div>
 
                                             <?php
-                                            $db = new MyDB();
+                                   
                                             if (isset($_GET['topic_id'])) {
                                                 $assignment_id = $_GET['topic_id'];
 
@@ -70,7 +60,7 @@ class MyDB extends SQLite3
                                                 $result_user = $db->query($sql);
 
                                                 while ($row = $result_user->fetchArray(SQLITE3_ASSOC)) {
-                                                    ?>
+                                            ?>
                                                     <div class="w-full">
                                                         <div>
                                                             <h1 class="text-[#136C94] text-3xl px-10 pt-3">
@@ -87,14 +77,13 @@ class MyDB extends SQLite3
                                                         </div>
 
                                                         <div>
-                                                            <a href="../Academic/system/assignmentfile/<?= $row['file_attachment'] ?>"
-                                                                target="_blank" alt="<?= $row['file_attachment'] ?>">Read</a>
+                                                            <a href="../Academic/system/assignmentfile/<?= $row['file_attachment'] ?>" target="_blank" alt="<?= $row['file_attachment'] ?>">Read</a>
                                                             <p class="text-xl text-gray-900 px-10 mb-3">
                                                                 <?= $row['description'] ?>
                                                             </p>
                                                         </div>
                                                     </div>
-                                                    <?php
+                                            <?php
                                                 }
                                             } else {
                                                 // Handle the case when 'assignment_id' is not present in the URL

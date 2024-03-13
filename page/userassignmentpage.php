@@ -1,13 +1,7 @@
 <?php include 'connectdatabase.php';
 session_start();
 
-class MyDB extends SQLite3
-{
-    function __construct()
-    {
-        $this->open('../Academic/database/education.db');
-    }
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,23 +39,18 @@ class MyDB extends SQLite3
                             <div class="mx-auto bg-white p-8 border rounded-md shadow-md w-full">
                                 <h2 class="text-2xl font-semibold mb-6">Assignment Page</h2>
                                 <div class="flex flex-col lg:flex-row items-center gap-4  justify-center w-full">
-                                    <div
-                                        class="flex flex-col justify-center border rounded-md border-grey gap-6 w-full self-start lg:w-3/4 h-full">
+                                    <div class="flex flex-col justify-center border rounded-md border-grey gap-6 w-full self-start lg:w-3/4 h-full">
                                         <div class="flex p-4 bg-white rounded-3xl w-full self-start">
                                             <!-- Icon Container -->
-                                            <div
-                                                class="bg-[#136C94] rounded-full w-20 h-20 flex items-center justify-center">
-                                                <svg class="w-16 h-16 text-white" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                    <path stroke="currentColor" stroke-linecap="round"
-                                                        stroke-linejoin="round" stroke-width="2"
-                                                        d="M12 6v13m0-13c-2.8-.8-4.7-1-8-1a1 1 0 0 0-1 1v11c0 .6.5 1 1 1 3.2 0 5 .2 8 1m0-13c2.8-.8 4.7-1 8-1 .6 0 1 .5 1 1v11c0 .6-.5 1-1 1-3.2 0-5 .2-8 1" />
+                                            <div class="bg-[#136C94] rounded-full w-20 h-20 flex items-center justify-center">
+                                                <svg class="w-16 h-16 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v13m0-13c-2.8-.8-4.7-1-8-1a1 1 0 0 0-1 1v11c0 .6.5 1 1 1 3.2 0 5 .2 8 1m0-13c2.8-.8 4.7-1 8-1 .6 0 1 .5 1 1v11c0 .6-.5 1-1 1-3.2 0-5 .2-8 1" />
                                                 </svg>
                                             </div>
 
                                             <div class="flex flex-col w-full ml-4">
                                                 <?php
-                                                $db = new MyDB();
+
                                                 if (isset($_GET['assignment_id'])) {
                                                     $assignment_id = $_GET['assignment_id'];
 
@@ -73,7 +62,7 @@ class MyDB extends SQLite3
                                                     $result = $db->query($sql);
 
                                                     while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-                                                        ?>
+                                                ?>
                                                         <div class="w-full">
                                                             <h1 class="text-[#136C94] text-3xl px-4 pt-2">
                                                                 <?= $row['assignment_title'] ?>
@@ -86,67 +75,55 @@ class MyDB extends SQLite3
                                                             <hr class="border-[#17A7CE] px-4">
 
                                                             <div class="px-4 mt-2">
-                                                                <a href="../Academic/system/assignmentfile/<?= $row['file_attachment'] ?>"
-                                                                    target="_blank" class="text-[#17A7CE] hover:underline"
-                                                                    alt="<?= $row['file_attachment'] ?>">Read Assignment</a>
+                                                                <a href="../Academic/system/assignmentfile/<?= $row['file_attachment'] ?>" target="_blank" class="text-[#17A7CE] hover:underline" alt="<?= $row['file_attachment'] ?>">Read Assignment</a>
                                                                 <p class="text-xl text-gray-900 mt-2">
                                                                     <?= $row['description'] ?>
                                                                 </p>
                                                             </div>
                                                         </div>
 
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div
-                                                class="flex flex-col justify-center self-start  border rounded-md border-grey gap-6 w-full lg:w-1/4 h-full">
-                                                <form class="" id="addsubmit"
-                                                    action="../Academic/system/addsubmission.php?assignment_id=<?= $row['assignment_id'] ?>"
-                                                    method="POST" enctype="multipart/form-data">
-
-                                                    <div
-                                                        class="flex flex-col justify-center self-start bg-white rounded-md shadow-lg p-6 w-full h-full">
-                                                        <div class="flex justify-between">
-                                                            <span class="text-[#17A7CE] text-left text-2xl">งานของฉัน</span>
-                                                            <span class="text-[#17A7CE] text-left text-sm mt-2">status</span>
-                                                        </div>
-                                                        <div class="mt-4">
-                                                            <input type="file" name="assignmentfile" id="assignmentfile"
-                                                                class="bg-[#17A7CE] text-white flex w-full px-4 py-2.5 rounded-md cursor-pointer hover:bg-blue-800 transition duration-300 "
-                                                                require>
-                                                        </div>
-
-                                                        <div class="w-full mt-4">
-                                                            <div class="flex w-full px-4">
-                                                                <button type="submit" id="submitBtn"
-                                                                    class="w-full bg-[#17A7CE] text-white h-[50px] rounded-lg hover:bg-blue-800 transition duration-300">
-                                                                    <!-- <h1 class="text-white text-2xl">ส่งงาน</h1> -->ส่งงาน
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                                <form class="" id="lessonForm"
-                                                    action="../Academic/system/deleteattemp.php?course_id=<?= $course_id ?>"
-                                                    method="POST" enctype="multipart/form-data">
-                                                    <div class="w-full mt-4">
-                                                        <div class="flex w-full px-4 ">
-                                                            <button type="reset" id="cancle" onclick="cancleUpload()"
-                                                                class="w-full border-4 h-[50px] border-gray-200 rounded-lg hover:bg-gray-200">
-                                                                <h1 class="text-gray-400 text-2xl ">ยกเลิกการส่ง</h1>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </form>
                                             </div>
                                         </div>
                                     </div>
-                                    <?php
+                                    <div class="flex flex-col justify-center self-start  border rounded-md border-grey gap-6 w-full lg:w-1/4 h-full">
+                                        <form class="" id="addsubmit" action="../Academic/system/addsubmission.php?assignment_id=<?= $row['assignment_id'] ?>" method="POST" enctype="multipart/form-data">
+
+                                            <div class="flex flex-col justify-center self-start bg-white rounded-md shadow-lg p-6 w-full h-full">
+                                                <div class="flex justify-between">
+                                                    <span class="text-[#17A7CE] text-left text-2xl">งานของฉัน</span>
+                                                    <span class="text-[#17A7CE] text-left text-sm mt-2">status</span>
+                                                </div>
+                                                <div class="mt-4">
+                                                    <input type="file" name="assignmentfile" id="assignmentfile" class="bg-[#17A7CE] text-white flex w-full px-4 py-2.5 rounded-md cursor-pointer hover:bg-blue-800 transition duration-300 " require>
+                                                </div>
+
+                                                <div class="w-full mt-4">
+                                                    <div class="flex w-full px-4">
+                                                        <button type="submit" id="submitBtn" class="w-full bg-[#17A7CE] text-white h-[50px] rounded-lg hover:bg-blue-800 transition duration-300">
+                                                            <!-- <h1 class="text-white text-2xl">ส่งงาน</h1> -->ส่งงาน
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <form class="" id="lessonForm" action="../Academic/system/deleteattemp.php?course_id=<?= $course_id ?>" method="POST" enctype="multipart/form-data">
+                                            <div class="w-full mt-4">
+                                                <div class="flex w-full px-4 ">
+                                                    <button type="reset" id="cancle" onclick="cancleUpload()" class="w-full border-4 h-[50px] border-gray-200 rounded-lg hover:bg-gray-200">
+                                                        <h1 class="text-gray-400 text-2xl ">ยกเลิกการส่ง</h1>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                    <?php
                                                     }
                                                 } else {
                                                     // else what?
                                                 }
-                                                ?>
+                    ?>
 
 
                         </div>

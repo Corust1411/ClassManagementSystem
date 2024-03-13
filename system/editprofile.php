@@ -1,16 +1,8 @@
 <?php
 session_start();
-include 'connectdatabase.php'; // Make sure this file includes the SQLite database connection
+include 'connectdatabase.php'; 
 
-class MyDB extends SQLite3
-{
-    function __construct()
-    {
-        $this->open('../Academic/database/education.db');
-    }
-}
 
-$db = new MyDB();
 
 $user_id = $_SESSION['user_id'];
 
@@ -41,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $sql = "SELECT password FROM user WHERE user_id = $user_id";
         $result = $db->querySingle($sql);
-        
+
         if ($result === $oldPassword) {
 
             $sql = "UPDATE user SET password = '$newPassword' WHERE user_id = $user_id";
@@ -62,4 +54,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 echo "<script>window.location = '../page/setting.php';</script>";
 exit;
-?>

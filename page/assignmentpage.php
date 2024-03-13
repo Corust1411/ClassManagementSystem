@@ -1,12 +1,5 @@
 <?php include 'connectdatabase.php';
 session_start();
-class MyDB extends SQLite3
-{
-    function __construct()
-    {
-        $this->open('../Academic/database/education.db');
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +53,6 @@ class MyDB extends SQLite3
 
                                             <div class="flex flex-col w-full ml-4">
                                                 <?php
-                                                $db = new MyDB();
                                                 if (isset($_GET['assignment_id'])) {
                                                     $assignment_id = filter_var($_GET['assignment_id'], FILTER_SANITIZE_NUMBER_INT);
                                                     $sql = "SELECT assignment.*, user.firstname, user.lastname 

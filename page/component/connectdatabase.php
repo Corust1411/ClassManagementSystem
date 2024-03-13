@@ -1,17 +1,15 @@
-
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "education";
+class pageNavbar extends SQLite3 {
+    function __construct() {
+       $this->open('../../system/nnew.db');
+    }
+ }
 
-
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-// echo "Connected successfully";
-
+ // 2. Open Database 
+ $db = new pageNavbar();
+ if(!$db) {
+    echo $db->lastErrorMsg();
+ } else {
+    // echo "Opened database successfully<br>";
+ }
 ?>

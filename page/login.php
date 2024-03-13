@@ -36,21 +36,21 @@ if (isset($_SESSION["Error"])) {
     <div class="z-10 flex items-center justify-center h-full">
         <div class="h-fit bg-white rounded-2xl p-8 shadow-md max-w-md w-full z-10">
             <div class="h-fit p-2 pl-0 mb-5">
-                <h1 class="text-3xl justify-center font-bold">Login</h1>
+                <h1 class="text-3xl justify-center font-bold">เข้าสู่ระบบ</h1>
             </div>
             <div>
             <form action="../system/logincheck.php" method="POST">
                 <label for="email">
-                    <h1>email : </h1>
+                    <h1>อีเมล: </h1>
                 </label>
                 <!-- Adding "rounded-full" class to make the input round -->
                 <input type="text" name="email" class="w-full mb-5 rounded-full" id="email">
                 <label for="password">
-                    <h1>Password: </h1>
+                    <h1>รหัสผ่าน: </h1>
                 </label>
                 <!-- Changing "text" type to "password" to hide the letters and adding "rounded-full" class -->
                 <input type="password" name="password" class="w-full rounded-full" id="password"><br>
-                <button type="submit" class="mt-8 p-3 bg-cyan-300 rounded-xl">Submit</button>
+                <button type="submit" class="mt-8 p-3 bg-cyan-300 rounded-xl">ยืนยัน</button>
             </form>
             </div>
         </div>

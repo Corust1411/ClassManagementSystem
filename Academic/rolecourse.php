@@ -1,11 +1,5 @@
 <?php include 'connectdatabase.php';
-class MyDB extends SQLite3
-{
-    function __construct()
-    {
-        $this->open('../Academic/database/education.db');
-    }
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,35 +35,29 @@ class MyDB extends SQLite3
                     <div class="bg-white border border-gray-100 shadow-md p-6 rounded-md lg:col-span-2 w-full">
                         <div class="flex flex-col lg:flex-row justify-between mb-4 items-start">
                             <div class="mx-auto bg-white p-8 border rounded-md shadow-md w-full">
-                                <h2 class="text-2xl font-semibold mb-6">Add Role</h2>
+                                <h2 class="text-2xl font-semibold mb-6">เพิ่มสมาชิกในชั้นเรียน</h2>
 
                                 <form action="../Academic/system/addselectcourse.php" method="POST" class="space-y-4"
                                     id="roleForm">
                                     <div class="mb-4">
-                                        <label for="role" class="block text-sm font-medium text-gray-600">Select
-                                            Role</label>
-                                        <select id="role" name="category"
-                                            class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500"
-                                            onchange="toggleFields()">
+                                        <label for="role" class="block text-sm font-medium text-gray-600">เลือกตำแหน่ง</label>
+                                        <select id="role" name="category" class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500" onchange="toggleFields()">
 
-                                            <option value="empty" selected>Choose Role</option>
-                                            <option value="teacher">Teacher</option>
-                                            <option value="student">Student</option>
+                                            <option value="empty" selected>ยังไม่ได้เลือก</option>
+                                            <option value="teacher">ผู้สอน</option>
+                                            <option value="student">ผู้เรียน</option>
                                         </select>
                                     </div>
 
                                     <div class="mb-4">
-                                        <label for="course" class="block text-sm font-medium text-gray-600">Select
-                                            course</label>
-                                        <select id="course" name="course"
-                                            class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500">
-                                            <option value="empty"> Choose Course</option>
-                                            <?php
-                                            $db = new MyDB();
-                                            $sql = "SELECT * FROM course";
-                                            $result = $db->query($sql);
-                                            while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-                                                ?>
+                                        <label for="course" class="block text-sm font-medium text-gray-600">เลือกชั้นเรียน</label>
+                                        <select id="course" name="course" class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500">
+                                            <option value="empty">ยังไม่ได้เลือก</option> <?php
+                                                                                            $sql = "SELECT * FROM course";
+                                                                                            $result = $db->query($sql);
+
+                                                                                            while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+                                                                                            ?>
 
                                                 <option value=<?= $row['course_id'] ?>> <?= $row['course_name'] ?></option>
 
@@ -77,17 +65,14 @@ class MyDB extends SQLite3
                                         </select>
                                     </div>
                                     <div class="mb-4 hidden" id="studentField">
-                                        <label for="faculty" class="block text-sm font-medium text-gray-600">Select
-                                            Faculty</label>
-                                        <select id="faculty" name="faculty"
-                                            class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500">
-                                            <option value="empty"> Choose Faculty</option>
-                                            <?php
-                                            $db = new MyDB();
-                                            $sql = "SELECT * FROM faculty";
-                                            $result = $db->query($sql);
-                                            while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-                                                ?>
+                                        <label for="faculty" class="block text-sm font-medium text-gray-600">เลือกห้อง</label>
+                                        <select id="faculty" name="faculty" class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500">
+                                            <option value="empty">ยังไม่ได้เลือก</option> <?php
+                                                                                            $sql = "SELECT * FROM faculty";
+                                                                                            $result = $db->query($sql);
+
+                                        while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+                                                                                            ?>
 
                                                 <option value=<?= $row['faculty_id'] ?>> <?= $row['faculty_name'] ?></option>
 
@@ -95,40 +80,31 @@ class MyDB extends SQLite3
                                         </select>
                                     </div>
                                     <div class="mb-4 hidden" id="studentsectionField">
-                                        <label for="section"
-                                            class="block text-sm font-medium text-gray-600">Section</label>
-                                        <input type="text" id="section" name="section"
-                                            class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500">
+                                        <label for="section" class="block text-sm font-medium text-gray-600">กลุ่มเรียน</label>
+                                        <input type="text" id="section" name="section" class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500" >
                                     </div>
                                     <div class="mb-4 hidden" id="teachersectionField">
-                                        <label for="section"
-                                            class="block text-sm font-medium text-gray-600">Section</label>
-                                        <input type="text" id="section" name="section"
-                                            class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500">
+                                        <label for="section" class="block text-sm font-medium text-gray-600">กลุ่มเรียน</label>
+                                        <input type="text" id="section" name="section" class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500" >
                                     </div>
 
                                     <div class="mb-4 hidden" id="semesterField">
-                                        <label for="semester"
-                                            class="block text-sm font-medium text-gray-600">Semester</label>
-                                        <input type="number" id="semester" name="semester"
-                                            class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500">
+                                        <label for="semester" class="block text-sm font-medium text-gray-600">เทอม</label>
+                                        <input type="number" id="semester" name="semester" class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500" >
                                     </div>
 
                                     <div class="mb-6 hidden" id="studentyearField">
-                                        <label for=" year" class="block text-sm font-medium text-gray-600">Year</label>
-                                        <input type="number" id="year" name="year"
-                                            class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500">
+                                        <label for=" year" class="block text-sm font-medium text-gray-600">ชั้นปี</label>
+                                        <input type="number" id="year" name="year" class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500" >
                                     </div>
                                     <div class="mb-6 hidden" id="teacheryearField">
-                                        <label for=" year" class="block text-sm font-medium text-gray-600">Year</label>
-                                        <input type="number" id="year" name="year"
-                                            class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500">
+                                        <label for=" year" class="block text-sm font-medium text-gray-600">ชั้นปี</label>
+                                        <input type="number" id="year" name="year" class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-blue-500" >
                                     </div>
                                     <div class="mb-6 hidden" id="teacherField">
-                                        <label for="teacher"
-                                            class="block text-sm font-medium text-gray-600">Teacher</label>
+                                        <label for="teacher" class="block text-sm font-medium text-gray-600">รายชื่อผู้สอน</label>
                                         <?php
-                                        $db = new MyDB();
+                                     
                                         $sql = "SELECT * FROM teacher INNER JOIN user ON teacher.user_id = user.user_id";
                                         $result = $db->query($sql);
 
@@ -144,8 +120,7 @@ class MyDB extends SQLite3
                                         }
                                         ?>
                                     </div>
-                                    <button type="submit"
-                                        class="w-full bg-[#f84525] text-white p-2 rounded-md hover:bg-[#f82525] focus:outline-none">Submit</button>
+                                    <button type="submit" class="w-full bg-[#f84525] text-white p-2 rounded-md hover:bg-[#f82525] focus:outline-none">ดำเนินการ</button>
                                 </form>
                             </div>
                         </div>

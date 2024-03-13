@@ -6,13 +6,7 @@ if (!isset($_SESSION['login'])) {
   header("Location: ./login.php");
   exit();
 }
-class MyDB extends SQLite3
-{
-  function __construct()
-  {
-    $this->open('../Academic/database/education.db');
-  }
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,7 +34,7 @@ class MyDB extends SQLite3
           <!-- user img -->
           <div class="py-4 w-80 h-80 bg-gray-900 mb-8 rounded-full overflow-hidden">
             <?php
-            $db = new MyDB();
+         
             $user_id = $_SESSION["user_id"];
             $role = $_SESSION["role"];
             $sql = "SELECT * FROM user WHERE role = '$role' AND user_id = $user_id";
@@ -96,7 +90,7 @@ class MyDB extends SQLite3
 
             <!-- fetch class from db and show -->
             <?php
-            $db = new MyDB();
+         
             $user_id = $_SESSION["user_id"];
             $role = $_SESSION['role'];
 

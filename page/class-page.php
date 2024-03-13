@@ -2,16 +2,6 @@
 session_start();
 // var_dump($_SESSION);
 include 'connectdatabase.php';
-if (!isset($_SESSION['login'])) {
-  header("Location: ./login.php");
-}
-class MyDB extends SQLite3
-{
-  function __construct()
-  {
-    $this->open('../Academic/database/education.db');
-  }
-}
 ?>
 
 <!DOCTYPE html>
@@ -35,37 +25,25 @@ class MyDB extends SQLite3
       <div>
         <ul class="px-4 py-2 flex justify-center" id="tabs" data-tabs-toggle="#tabs-content" role="tablist">
           <li class="w-full flex justify-center">
-            <button
-              class="w-full text-white p-4 rounded focus:bg-[#AFDAFF] focus:text-gray-900 hover:text-red-400 shadow-md flex items-center justify-center"
-              id="announcement-tab" data-tabs-target="#announcement" type="button" role="tab"
-              aria-controls="announcement" aria-selected="false">
+            <button class="w-full text-white p-4 rounded focus:bg-[#AFDAFF] focus:text-gray-900 hover:text-red-400 shadow-md flex items-center justify-center" id="announcement-tab" data-tabs-target="#announcement" type="button" role="tab" aria-controls="announcement" aria-selected="false">
               <svg class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
               </svg>
               ประกาศ
             </button>
           </li>
           <li class="w-full flex justify-center">
-            <button
-              class="w-full text-white p-4 rounded focus:bg-[#AFDAFF] focus:text-gray-900 hover:text-red-400 shadow-md flex items-center justify-center"
-              id="classwork-tab" data-tabs-target="#classwork" type="button" role="tab" aria-controls="classwork"
-              aria-selected="false">
+            <button class="w-full text-white p-4 rounded focus:bg-[#AFDAFF] focus:text-gray-900 hover:text-red-400 shadow-md flex items-center justify-center" id="classwork-tab" data-tabs-target="#classwork" type="button" role="tab" aria-controls="classwork" aria-selected="false">
               <svg class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               งานของชั้นเรียน
             </button>
           </li>
           <li class="w-full flex justify-center">
-            <button
-              class="w-full text-white p-4 rounded focus:bg-[#AFDAFF] focus:text-gray-900 hover:text-red-400 shadow-md flex items-center justify-center"
-              id="member-tab" data-tabs-target="#member" type="button" role="tab" aria-controls="member"
-              aria-selected="false">
+            <button class="w-full text-white p-4 rounded focus:bg-[#AFDAFF] focus:text-gray-900 hover:text-red-400 shadow-md flex items-center justify-center" id="member-tab" data-tabs-target="#member" type="button" role="tab" aria-controls="member" aria-selected="false">
               <svg class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
               </svg>
               สมาชิก
             </button>
@@ -90,18 +68,18 @@ class MyDB extends SQLite3
             </div>
 
             <?php
-            // $db = new MyDB();
+            // 
             $sql = 'SELECT course.course_name
             FROM course
             WHERE course.course_id = 22';
             $result = $db->query($sql);
-            $row = mysqli_fetch_array($result);
+
             $row = $result->fetchArray(SQLITE3_ASSOC);
 
             echo '<h1 class="text-gray-900 text-left p-10 pt-[10px] text-3xl text-ellipsis overflow-x-hidden ...">' .
               $row['course_name']
               . '</h1>'
-              ?>
+            ?>
           </div>
 
           <div class="grid grid-cols-5 py-5">
@@ -155,14 +133,11 @@ class MyDB extends SQLite3
 
               <!-- assignment -->
               <a href="work-page.php" class="mb-6 mt-6">
-                <div
-                  class="rounded-xl bg-white w-full ring-1 ring-[#17A7CE] mb-6 mt-6 flex hover:shadow-xl hover:bg-gray-200">
+                <div class="rounded-xl bg-white w-full ring-1 ring-[#17A7CE] mb-6 mt-6 flex hover:shadow-xl hover:bg-gray-200">
                   <div class="p-6 flex">
                     <div class="rounded-full w-[40px] h-[40px] ring-4 ring-[#136C94] bg-[#136C94]">
-                      <svg class="w-[40px] h-[40px] text-white dark:text-white" aria-hidden="true" fill="none"
-                        viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M12 6v13m0-13c-2.8-.8-4.7-1-8-1a1 1 0 0 0-1 1v11c0 .6.5 1 1 1 3.2 0 5 .2 8 1m0-13c2.8-.8 4.7-1 8-1 .6 0 1 .5 1 1v11c0 .6-.5 1-1 1-3.2 0-5 .2-8 1" />
+                      <svg class="w-[40px] h-[40px] text-white dark:text-white" aria-hidden="true" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v13m0-13c-2.8-.8-4.7-1-8-1a1 1 0 0 0-1 1v11c0 .6.5 1 1 1 3.2 0 5 .2 8 1m0-13c2.8-.8 4.7-1 8-1 .6 0 1 .5 1 1v11c0 .6-.5 1-1 1-3.2 0-5 .2-8 1" />
                       </svg>
                     </div>
 
@@ -194,14 +169,11 @@ class MyDB extends SQLite3
 
               <!-- เนื้อหาประกอบการเรียนการสอน -->
               <a href="work-page.php" class="mb-6 mt-6">
-                <div
-                  class="rounded-xl bg-white w-full ring-1 ring-[#17A7CE] mb-6 mt-6 flex hover:shadow-xl hover:bg-gray-200">
+                <div class="rounded-xl bg-white w-full ring-1 ring-[#17A7CE] mb-6 mt-6 flex hover:shadow-xl hover:bg-gray-200">
                   <div class="p-6 flex">
                     <div class="rounded-full w-[40px] h-[40px] ring-4 ring-[#136C94] bg-[#136C94]">
-                      <svg class="w-[40px] h-[40px] text-white dark:text-white" aria-hidden="true" fill="none"
-                        viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M5 19V4c0-.6.4-1 1-1h12c.6 0 1 .4 1 1v13H7a2 2 0 0 0-2 2Zm0 0c0 1.1.9 2 2 2h12M9 3v14m7 0v4" />
+                      <svg class="w-[40px] h-[40px] text-white dark:text-white" aria-hidden="true" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 19V4c0-.6.4-1 1-1h12c.6 0 1 .4 1 1v13H7a2 2 0 0 0-2 2Zm0 0c0 1.1.9 2 2 2h12M9 3v14m7 0v4" />
                       </svg>
                     </div>
 
@@ -233,14 +205,11 @@ class MyDB extends SQLite3
 
               <!-- quiz -->
               <a href="quiz-page.php" class="mb-6 mt-6">
-                <div
-                  class="rounded-xl bg-white w-full ring-1 ring-[#17A7CE] mb-6 mt-6 flex hover:shadow-xl hover:bg-gray-200">
+                <div class="rounded-xl bg-white w-full ring-1 ring-[#17A7CE] mb-6 mt-6 flex hover:shadow-xl hover:bg-gray-200">
                   <div class="p-6 flex">
                     <div class="rounded-full w-[40px] h-[40px] ring-4 ring-[#136C94] bg-[#136C94]">
-                      <svg class="w-[40px] h-[40px] text-white dark:text-white" aria-hidden="true" fill="none"
-                        viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M19 7h1v12c0 .6-.4 1-1 1h-2a1 1 0 0 1-1-1V5c0-.6-.4-1-1-1H5a1 1 0 0 0-1 1v14c0 .6.4 1 1 1h11.5M7 14h6m-6 3h6m0-10h.5m-.5 3h.5M7 7h3v3H7V7Z" />
+                      <svg class="w-[40px] h-[40px] text-white dark:text-white" aria-hidden="true" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7h1v12c0 .6-.4 1-1 1h-2a1 1 0 0 1-1-1V5c0-.6-.4-1-1-1H5a1 1 0 0 0-1 1v14c0 .6.4 1 1 1h11.5M7 14h6m-6 3h6m0-10h.5m-.5 3h.5M7 7h3v3H7V7Z" />
                       </svg>
                     </div>
 
@@ -284,8 +253,7 @@ class MyDB extends SQLite3
 
               <div class="p-5 flex justify-center">
                 <a href="announcement-page.html" class="w-full h-full">
-                  <button
-                    class="rounded-2xl bg-[#17A7CE] p-2 text-lg w-full h-full text-white hover:ring-1 hover:ring-gray-600 hover:bg-[#136C94]">
+                  <button class="rounded-2xl bg-[#17A7CE] p-2 text-lg w-full h-full text-white hover:ring-1 hover:ring-gray-600 hover:bg-[#136C94]">
                     เพิ่มประกาศ
                   </button>
                 </a>
@@ -295,8 +263,7 @@ class MyDB extends SQLite3
         </div>
 
         <!-- classwork tab -->
-        <div class="hidden px-20 rounded-lg justify-center" id="classwork" role="tabpanel"
-          aria-labelledby="classwork-tab">
+        <div class="hidden px-20 rounded-lg justify-center" id="classwork" role="tabpanel" aria-labelledby="classwork-tab">
           <div class="flex justify-center w-full h-full">
             <div class="w-full h-full mt-[40px] px-[100px]">
               <!-- assignment -->
@@ -304,10 +271,8 @@ class MyDB extends SQLite3
                 <div class="rounded-xl bg-white ring-1 ring-[#17A7CE] mb-6 mt-6 flex hover:shadow-xl hover:bg-gray-200">
                   <div class="p-6 flex">
                     <div class="rounded-full w-[40px] h-[40px] ring-4 ring-[#136C94] bg-[#136C94]">
-                      <svg class="w-[40px] h-[40px] text-white dark:text-white" aria-hidden="true" fill="none"
-                        viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M12 6v13m0-13c-2.8-.8-4.7-1-8-1a1 1 0 0 0-1 1v11c0 .6.5 1 1 1 3.2 0 5 .2 8 1m0-13c2.8-.8 4.7-1 8-1 .6 0 1 .5 1 1v11c0 .6-.5 1-1 1-3.2 0-5 .2-8 1" />
+                      <svg class="w-[40px] h-[40px] text-white dark:text-white" aria-hidden="true" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v13m0-13c-2.8-.8-4.7-1-8-1a1 1 0 0 0-1 1v11c0 .6.5 1 1 1 3.2 0 5 .2 8 1m0-13c2.8-.8 4.7-1 8-1 .6 0 1 .5 1 1v11c0 .6-.5 1-1 1-3.2 0-5 .2-8 1" />
                       </svg>
                     </div>
 
@@ -332,10 +297,8 @@ class MyDB extends SQLite3
                 <div class="rounded-xl bg-white ring-1 ring-[#17A7CE] mb-6 mt-6 flex hover:shadow-xl hover:bg-gray-200">
                   <div class="p-6 flex">
                     <div class="rounded-full w-[40px] h-[40px] ring-4 ring-[#136C94] bg-[#136C94]">
-                      <svg class="w-[40px] h-[40px] text-white dark:text-white" aria-hidden="true" fill="none"
-                        viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M5 19V4c0-.6.4-1 1-1h12c.6 0 1 .4 1 1v13H7a2 2 0 0 0-2 2Zm0 0c0 1.1.9 2 2 2h12M9 3v14m7 0v4" />
+                      <svg class="w-[40px] h-[40px] text-white dark:text-white" aria-hidden="true" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 19V4c0-.6.4-1 1-1h12c.6 0 1 .4 1 1v13H7a2 2 0 0 0-2 2Zm0 0c0 1.1.9 2 2 2h12M9 3v14m7 0v4" />
                       </svg>
                     </div>
 
@@ -360,10 +323,8 @@ class MyDB extends SQLite3
                 <div class="rounded-xl bg-white ring-1 ring-[#17A7CE] mb-6 mt-6 flex hover:shadow-xl hover:bg-gray-200">
                   <div class="p-6 flex">
                     <div class="rounded-full w-[40px] h-[40px] ring-4 ring-[#136C94] bg-[#136C94]">
-                      <svg class="w-[40px] h-[40px] text-white dark:text-white" aria-hidden="true" fill="none"
-                        viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M19 7h1v12c0 .6-.4 1-1 1h-2a1 1 0 0 1-1-1V5c0-.6-.4-1-1-1H5a1 1 0 0 0-1 1v14c0 .6.4 1 1 1h11.5M7 14h6m-6 3h6m0-10h.5m-.5 3h.5M7 7h3v3H7V7Z" />
+                      <svg class="w-[40px] h-[40px] text-white dark:text-white" aria-hidden="true" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7h1v12c0 .6-.4 1-1 1h-2a1 1 0 0 1-1-1V5c0-.6-.4-1-1-1H5a1 1 0 0 0-1 1v14c0 .6.4 1 1 1h11.5M7 14h6m-6 3h6m0-10h.5m-.5 3h.5M7 7h3v3H7V7Z" />
                       </svg>
                     </div>
 
@@ -404,7 +365,7 @@ class MyDB extends SQLite3
 
                 <!-- member -->
                 <?php
-                $db = new MyDB();
+
                 $user_id = $_SESSION["user_id"];
                 $role = $_SESSION["role"];
                 $sql = "SELECT u.firstname, u.lastname, u.profile_picture
@@ -453,7 +414,7 @@ class MyDB extends SQLite3
                     <hr class="border-[#17A7CE]" />
                   </div>
                   <?php
-                  $db = new MyDB();
+
                   $user_id = $_SESSION["user_id"];
                   $role = $_SESSION["role"];
                   $sql = "SELECT u.firstname, u.lastname, u.profile_picture

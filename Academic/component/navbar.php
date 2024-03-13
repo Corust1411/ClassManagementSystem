@@ -2,13 +2,7 @@
 session_start();
 // var_dump($_SESSION);
 include 'connectdatabase.php';
-class MyDB extends SQLite3
-{
-    function __construct()
-    {
-        $this->open('../Academic/database/education.db');
-    }
-}
+
 
 ?>
 <div class="py-2 px-6 bg-[#f8f4f3] flex items-center shadow-md shadow-black/5 sticky top-0 left-0 z-30">
@@ -52,10 +46,8 @@ class MyDB extends SQLite3
             <div
                 class="dropdown-menu shadow-md shadow-black/5 z-30 hidden max-w-xs w-full bg-white rounded-md border border-gray-100">
                 <div class="flex items-center px-4 pt-4 border-b border-b-gray-100 notification-tab">
-                    <button type="button" data-tab="notification" data-tab-page="notifications"
-                        class="text-gray-400 font-medium text-[13px] hover:text-gray-600 border-b-2 border-b-transparent mr-4 pb-1 active">Notifications</button>
-                    <button type="button" data-tab="notification" data-tab-page="messages"
-                        class="text-gray-400 font-medium text-[13px] hover:text-gray-600 border-b-2 border-b-transparent mr-4 pb-1">Messages</button>
+                    <button type="button" data-tab="notification" data-tab-page="notifications" class="text-gray-400 font-medium text-[13px] hover:text-gray-600 border-b-2 border-b-transparent mr-4 pb-1 active">การแจ้งเตือน</button>
+                    <button type="button" data-tab="notification" data-tab-page="messages" class="text-gray-400 font-medium text-[13px] hover:text-gray-600 border-b-2 border-b-transparent mr-4 pb-1">ข้อความ</button>
                 </div>
 
             </div>
@@ -87,7 +79,7 @@ class MyDB extends SQLite3
                 <div class="flex-shrink-0 w-10 h-10 relative">
                     <div class="p-1 bg-white rounded-full focus:outline-none focus:ring">
                         <?php
-                        $db = new MyDB();
+                        
                         $academic = $_SESSION["role"];
                         $user_id = $_SESSION["user_id"];
                         $sql = "SELECT * FROM user WHERE role = '$academic' and user_id = $user_id";
@@ -100,7 +92,7 @@ class MyDB extends SQLite3
                                 alt="Profile Image" />
                             <?php
                         }
-                        mysqli_close($conn);
+                
                         ?>
                         <div
                             class="top-0 left-7 absolute w-3 h-3 bg-lime-400 border-2 border-white rounded-full animate-ping">
@@ -122,18 +114,15 @@ class MyDB extends SQLite3
             <ul
                 class="dropdown-menu shadow-md shadow-black/5 z-30 hidden py-1.5 rounded-md bg-white border border-gray-100 w-full max-w-[140px]">
                 <li>
-                    <a href="#"
-                        class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50">Profile</a>
+                    <a href="#" class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50">ดูโปรไฟล์</a>
                 </li>
                 <li>
-                    <a href="#"
-                        class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50">Settings</a>
+                    <a href="#" class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50">การตั้งค่า</a>
                 </li>
                 <li>
                     <form method="POST" action="../system/logout.php">
-                        <button type="submit" role="menuitem"
-                            class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50 cursor-pointer">
-                            Log Out
+                        <button type="submit" role="menuitem" class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50 cursor-pointer">
+                            ออกจากระบบ
                         </button>
                     </form>
                 </li>
